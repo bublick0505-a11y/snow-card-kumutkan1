@@ -1,6 +1,43 @@
-<iframe
-  src="URL_NA_VASH_INDEX_HTML"
-  style="width:100%; height:11000px; border:0; display:block; overflow:hidden;"
-  loading="lazy"
-  allowfullscreen>
-</iframe>
+<div id="snow-card-frame-wrap" style="width:100%;overflow:hidden;">
+  <iframe
+    id="snow-card-frame"
+    src="URL_NA_VASH_INDEX_HTML"
+    style="width:100%;height:12000px;border:0;display:block;overflow:hidden;"
+    scrolling="no"
+    loading="eager"
+    allowfullscreen>
+  </iframe>
+</div>
+<script>
+(function(){
+  var iframe = document.getElementById('snow-card-frame');
+  if (!iframe) return;
+
+  function clickTildaPopup(targets){
+    var list = targets && targets.length ? targets : ['#popup:toursbf502n', '#popup:tours bf502n', '#popup:tours%20bf502n'];
+    for (var i = 0; i < list.length; i++) {
+      var href = list[i];
+      try {
+        var link = document.createElement('a');
+        link.href = href;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.location.hash = href.replace('#', '');
+        return;
+      } catch(e) {}
+    }
+  }
+
+  window.addEventListener('message', function(event){
+    var data = event.data || {};
+    if (data.type === 'snow-card-height' && data.height) {
+      iframe.style.height = Math.ceil(Number(data.height)) + 'px';
+    }
+    if (data.type === 'open-snow-card-popup') {
+      clickTildaPopup(data.targets);
+    }
+  });
+})();
+</script>

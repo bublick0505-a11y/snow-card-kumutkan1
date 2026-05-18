@@ -24,6 +24,10 @@
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+
+    /* Исправление прокрутки внутри iframe в Tilda */
+    html,body{max-width:100%;overflow-x:hidden;scrollbar-width:none;-ms-overflow-style:none}
+    html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
     body{margin:0;font-family:'Onest',Arial,sans-serif;color:var(--text);background:var(--paper);line-height:1.5}
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
@@ -225,7 +229,7 @@
           <h1>Снежная открытка 2026 на Байкале</h1>
           <p class="lead">Фестиваль на льду Байкала, который начался с доброй истории и за пять лет вырос в международное событие с участием команд из Монголии и Китая. Для крупных компаний это возможность создать собственный логотип на льду, получить яркий инфоповод и сильный визуальный контент.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#request">Подать заявку на участие</a>
+            <a class="btn btn-primary" href="#popup:toursbf502n" data-open-tilda-popup>Подать заявку на участие</a>
             <a class="btn btn-secondary" href="#winners">Смотреть победителей</a>
           </div>
           <div class="fact">📍 с. Максимиха, Баргузинский район</div>
@@ -397,7 +401,7 @@
               <li><span class="check">✓</span><span>Организационное сопровождение и инструктаж</span></li>
               <li><span class="check">✓</span><span>Фото, видео и съемка результата с воздуха</span></li>
             </ul>
-            <a class="btn btn-secondary" href="#request">Оставить заявку от компании</a>
+            <a class="btn btn-secondary" href="#popup:toursbf502n" data-open-tilda-popup>Оставить заявку от компании</a>
           </article>
           <article class="price-card">
             <span class="price-label">Для брендов</span>
@@ -410,7 +414,7 @@
               <li><span class="check">✓</span><span>Бренд-интеграция на площадке и в визуальных материалах</span></li>
               <li><span class="check">✓</span><span>Индивидуальные условия по запросу</span></li>
             </ul>
-            <a class="btn btn-primary" href="#request">Стать партнером</a>
+            <a class="btn btn-primary" href="#popup:toursbf502n" data-open-tilda-popup>Стать партнером</a>
           </article>
         </div>
       </div>
@@ -515,7 +519,7 @@
           <p class="lead">Подходит для компаний, которые хотят нарисовать свой логотип на льду Байкала, стать партнером фестиваля или приехать командой на событие.</p>
           <p class="small">Телефон: <a href="tel:+79021622151">+7 (902) 162-21-51</a> · Почта: <a href="mailto:sale@kumutkan.ru">sale@kumutkan.ru</a> · Адрес: Республика Бурятия, с. Максимиха, ул. Пушкина, 1</p>
           <div class="request-button-wrap">
-            <a class="btn btn-primary" href="#popup:tours bf502n">Отправить заявку</a>
+            <a class="btn btn-primary" href="#popup:toursbf502n" data-open-tilda-popup>Отправить заявку</a>
           </div>
         </div>
       </div>
@@ -569,6 +573,49 @@
       }, {passive:true});
       showMedia(0);
     }
+
+
+    // Автовысота iframe и открытие формы Tilda из iframe.
+    (function(){
+      const POPUP_TARGETS = ['#popup:toursbf502n', '#popup:tours bf502n', '#popup:tours%20bf502n'];
+
+      function sendHeight(){
+        const doc = document.documentElement;
+        const body = document.body;
+        const height = Math.max(
+          body ? body.scrollHeight : 0,
+          body ? body.offsetHeight : 0,
+          doc ? doc.clientHeight : 0,
+          doc ? doc.scrollHeight : 0,
+          doc ? doc.offsetHeight : 0
+        );
+        try {
+          window.parent.postMessage({type:'snow-card-height', height: height + 40}, '*');
+        } catch(e) {}
+      }
+
+      function openTildaPopup(event){
+        if (event) event.preventDefault();
+        try {
+          window.parent.postMessage({type:'open-snow-card-popup', targets: POPUP_TARGETS}, '*');
+        } catch(e) {}
+        try {
+          if (window.top && window.top !== window) window.top.location.hash = POPUP_TARGETS[0].slice(1);
+        } catch(e) {}
+      }
+
+      document.querySelectorAll('[data-open-tilda-popup]').forEach((link) => {
+        link.addEventListener('click', openTildaPopup);
+      });
+
+      window.addEventListener('load', sendHeight);
+      window.addEventListener('resize', sendHeight);
+      if ('ResizeObserver' in window && document.body) {
+        new ResizeObserver(sendHeight).observe(document.body);
+      }
+      [80, 300, 900, 1800, 3200].forEach((delay) => setTimeout(sendHeight, delay));
+    })();
+
   </script>
 </body>
 </html>
