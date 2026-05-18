@@ -184,6 +184,20 @@
     .media-gallery .media-thumb img{width:100%!important;height:100%!important;object-fit:cover!important;background:transparent!important}
     @media (max-width:760px){.media-gallery .media-stage{border-radius:24px!important}.media-gallery .media-slide{height:clamp(420px,64vh,580px)!important;padding:12px!important;gap:12px!important}.media-gallery .media-slide figcaption{padding:12px 14px!important}.media-gallery .media-nav{top:50%!important;bottom:auto!important;width:42px!important;height:42px!important;font-size:32px!important}.media-gallery .media-prev{left:10px!important}.media-gallery .media-next{right:10px!important}.media-gallery .media-thumb{flex-basis:108px!important;height:74px!important}.media-gallery .media-panel{margin-top:12px!important}}
 
+
+    .history-photos{padding-top:40px}
+    .history-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch}
+    .history-photo{display:block;overflow:hidden;border-radius:34px;background:var(--ice);box-shadow:var(--shadow);aspect-ratio:16/9}
+    .history-photo img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .3s ease}
+    .history-photo:hover img{transform:scale(1.025)}
+    .history-photo-wide{grid-column:span 2;aspect-ratio:21/9}
+    .cta-simple{display:block;text-align:center;max-width:900px;margin:0 auto}
+    .cta-simple .lead{margin-left:auto;margin-right:auto}
+    .cta-simple .request-button-wrap{display:flex;justify-content:center;margin-top:28px}
+    .cta-simple .btn{min-width:260px}
+    @media (max-width:1024px){.history-photo-wide{aspect-ratio:16/9}}
+    @media (max-width:760px){.history-photos{padding-top:20px}.history-grid{grid-template-columns:1fr;gap:16px}.history-photo,.history-photo-wide{grid-column:span 1;aspect-ratio:16/10;border-radius:24px}.cta-simple .btn{width:100%;min-width:0}}
+
   </style>
   <link rel="preload" as="image" href="media-01.jpg">
 </head>
@@ -192,11 +206,11 @@
     <div class="container nav-inner">
       <nav class="links" aria-label="Навигация по странице">
         <a href="#about">О фестивале</a>
-        <a href="#video">Видео</a>
+        <a href="#gallery">Медиа</a>
+        <a href="#history">История</a>
         <a href="#business">Организациям</a>
         <a href="#winners">Победители</a>
         <a href="#partners">Партнеры</a>
-        <a href="#gallery">Фото</a>
         <a href="#stay">Проживание</a>
         <a href="#faq">FAQ</a>
       </nav>
@@ -251,108 +265,12 @@
       </div>
     </section>
 
-    <section class="section-sm" id="join">
-      <div class="container">
-        <div class="title">
-          <div class="eyebrow">Кому подходит</div>
-          <h2>Фестиваль для гостей, компаний и партнеров</h2>
-          <p class="lead">Фестиваль подходит компаниям, которые хотят выйти за рамки обычного спонсорства: собрать команду, создать свой знак или логотип на льду Байкала и получить готовый фото- и видеоконтент для PR, соцсетей и внутренних коммуникаций.</p>
-        </div>
-        <div class="cards">
-          <article class="card"><div class="card-icon">👨‍👩‍👧</div><h3>Гости и участники</h3><p>Для тех, кто хочет приехать на фестиваль, увидеть зимний Байкал и поучаствовать в создании открытки.</p><a class="btn btn-outline" href="#request">Подать заявку</a></article>
-          <article class="card"><div class="card-icon">🏢</div><h3>Компании и бренды</h3><p>Для организаций, которые хотят нарисовать свой логотип на льду Байкала и получить заметный инфоповод.</p><a class="btn btn-outline" href="#business">Смотреть пакеты</a></article>
-          <article class="card"><div class="card-icon">📷</div><h3>Зрители и семьи</h3><p>Для гостей, которые хотят приехать на Байкал, посмотреть фестиваль, сделать фото и остаться на отдых.</p><a class="btn btn-outline" href="#gallery">Смотреть фото</a></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="business">
-      <div class="container">
-        <div class="title">
-          <div class="eyebrow">Организациям и партнерам</div>
-          <h2>Условия участия для компаний и партнеров</h2>
-          <p class="lead">Главная задача страницы — показать историю роста фестиваля и продать пакеты участия крупным компаниям. Компания получает не просто размещение логотипа, а отдельную снежную работу на льду Байкала, съемку с воздуха, контент для PR и участие в международном фестивале.</p>
-        </div>
-        <div class="price-grid">
-          <article class="price-card featured">
-            <span class="price-label">Для компаний</span>
-            <h3>Пакет участия для компании</h3>
-            <p>Формат для компаний, которые хотят создать свой логотип или фирменную открытку на льду Байкала и использовать это как яркий PR-повод.</p>
-            <div class="price">от 70 000 ₽ <small>/ пакет</small></div>
-            <ul class="included">
-              <li><span class="check">✓</span><span>Участие компании в фестивале</span></li>
-              <li><span class="check">✓</span><span>Место для создания логотипа или фирменной открытки на льду</span></li>
-              <li><span class="check">✓</span><span>Организационное сопровождение и инструктаж</span></li>
-              <li><span class="check">✓</span><span>Фото, видео и съемка результата с воздуха</span></li>
-            </ul>
-            <a class="btn btn-secondary" href="#request">Оставить заявку от компании</a>
-          </article>
-          <article class="price-card">
-            <span class="price-label">Для брендов</span>
-            <h3>Партнерство фестиваля</h3>
-            <p>Формат для партнеров, которым важно официальное присутствие бренда, упоминания в коммуникациях, интеграция на площадке и участие в международном событии на Байкале.</p>
-            <div class="price">от 150 000 ₽ <small>/ партнерский пакет</small></div>
-            <ul class="included">
-              <li><span class="check">✓</span><span>Логотип партнера в материалах фестиваля</span></li>
-              <li><span class="check">✓</span><span>Упоминания в коммуникациях и публикациях</span></li>
-              <li><span class="check">✓</span><span>Бренд-интеграция на площадке и в визуальных материалах</span></li>
-              <li><span class="check">✓</span><span>Индивидуальные условия по запросу</span></li>
-            </ul>
-            <a class="btn btn-primary" href="#request">Стать партнером</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section winners" id="winners">
-      <div class="container">
-        <div class="title">
-          <div class="eyebrow">Конкурс</div>
-          <h2>Победители конкурса «Сагаан зураг» 2026</h2>
-          <p class="lead">Итоги конкурса и работы победителей.</p>
-        </div>
-        <div class="winners-grid">
-          <article class="winner-card first">
-            <span class="place">🥇 Победители</span>
-            <div class="winner-media"><img src="winner-1.jpg" alt="Работа команды Мхээр — победитель конкурса Сагаан зураг 2026" loading="lazy"></div>
-            <h3>Команда «Мхээр»</h3><p>Закаменский район</p>
-          </article>
-          <article class="winner-card">
-            <span class="place">🥈 Серебряные призеры</span>
-            <div class="winner-media"><img src="winner-2.jpg" alt="Работа команды Горная Ока — серебряный призер конкурса Сагаан зураг 2026" loading="lazy"></div>
-            <h3>«Горная Ока»</h3><p>Окинский район</p>
-          </article>
-          <article class="winner-card">
-            <span class="place">🥉 Бронзовые призеры</span>
-            <div class="winner-media"><img src="winner-3.jpg" alt="Работа команды Весёлые снежинки — бронзовый призер конкурса Сагаан зураг 2026" loading="lazy"></div>
-            <h3>«Весёлые снежинки»</h3><p>Улан-Удэ</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="partners">
-      <div class="container">
-        <div class="title">
-          <div class="eyebrow">Наши партнеры</div>
-          <h2>Партнеры фестиваля</h2>
-          <p class="lead">Логотипы подключены напрямую с оригинальной страницы фестиваля.</p>
-        </div>
-        <div class="partners-grid" aria-label="Логотипы партнеров">
-          <div class="partner-logo"><img loading="lazy" src="https://static.tildacdn.com/tild3561-6563-4166-b566-646130653338/Logo_Buryatia_Rus_Wh.png" alt="Партнер фестиваля"></div>
-          <div class="partner-logo"><img loading="lazy" src="https://static.tildacdn.com/tild3236-3064-4563-b366-326635353864/ver_3_1_Buryatia_rus.png" alt="Партнер фестиваля"></div>
-          <div class="partner-logo"><img loading="lazy" src="https://static.tildacdn.com/tild6166-6237-4531-a664-643831653130/50____.png" alt="Партнер фестиваля"></div>
-          <div class="partner-logo"><img loading="lazy" src="https://static.tildacdn.com/tild3237-3232-4266-a431-663864633965/VTB_Logo_2018.png" alt="Партнер фестиваля"></div>
-        </div>
-      </div>
-    </section>
-
     <section class="section-sm" id="gallery">
       <div class="container">
         <div class="title">
           <div class="eyebrow">Фото</div>
           <h2>Медиа фестиваля</h2>
-          <p class="lead">Большая фотолента фестиваля: фотографии оптимизированы для телефона, листаются свайпом, стрелками, точками и миниатюрами.</p>
+          <p class="lead">Крупные фотографии фестиваля сразу после истории о событии: листайте работы, эмоции участников и кадры с высоты.</p>
         </div>
 
         <div class="gallery media-gallery" data-media-gallery>
@@ -449,6 +367,98 @@
       </div>
     </section>
 
+    <section class="section history-photos" id="history">
+      <div class="container">
+        <div class="history-grid">
+          <a class="history-photo history-photo-wide" href="history-2026.jpg" target="_blank" rel="noopener"><img src="history-2026.jpg" alt="Снежная открытка 2026 на льду Байкала" loading="lazy" decoding="async"></a>
+          <a class="history-photo" href="history-2025.jpg" target="_blank" rel="noopener"><img src="history-2025.jpg" alt="Снежная открытка 2025 на льду Байкала" loading="lazy" decoding="async"></a>
+          <a class="history-photo" href="history-2024.jpg" target="_blank" rel="noopener"><img src="history-2024.jpg" alt="Снежная открытка 2024 на льду Байкала" loading="lazy" decoding="async"></a>
+          <a class="history-photo history-photo-wide" href="history-2023.jpg" target="_blank" rel="noopener"><img src="history-2023.jpg" alt="Снежная открытка 2023 на льду Байкала" loading="lazy" decoding="async"></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="business">
+      <div class="container">
+        <div class="title">
+          <div class="eyebrow">Организациям и партнерам</div>
+          <h2>Условия участия для компаний и партнеров</h2>
+          <p class="lead">Главная задача страницы — показать историю роста фестиваля и продать пакеты участия крупным компаниям. Компания получает не просто размещение логотипа, а отдельную снежную работу на льду Байкала, съемку с воздуха, контент для PR и участие в международном фестивале.</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card featured">
+            <span class="price-label">Для компаний</span>
+            <h3>Пакет участия для компании</h3>
+            <p>Формат для компаний, которые хотят создать свой логотип или фирменную открытку на льду Байкала и использовать это как яркий PR-повод.</p>
+            <div class="price">от 70 000 ₽ <small>/ пакет</small></div>
+            <ul class="included">
+              <li><span class="check">✓</span><span>Участие компании в фестивале</span></li>
+              <li><span class="check">✓</span><span>Место для создания логотипа или фирменной открытки на льду</span></li>
+              <li><span class="check">✓</span><span>Организационное сопровождение и инструктаж</span></li>
+              <li><span class="check">✓</span><span>Фото, видео и съемка результата с воздуха</span></li>
+            </ul>
+            <a class="btn btn-secondary" href="#request">Оставить заявку от компании</a>
+          </article>
+          <article class="price-card">
+            <span class="price-label">Для брендов</span>
+            <h3>Партнерство фестиваля</h3>
+            <p>Формат для партнеров, которым важно официальное присутствие бренда, упоминания в коммуникациях, интеграция на площадке и участие в международном событии на Байкале.</p>
+            <div class="price">от 150 000 ₽ <small>/ партнерский пакет</small></div>
+            <ul class="included">
+              <li><span class="check">✓</span><span>Логотип партнера в материалах фестиваля</span></li>
+              <li><span class="check">✓</span><span>Упоминания в коммуникациях и публикациях</span></li>
+              <li><span class="check">✓</span><span>Бренд-интеграция на площадке и в визуальных материалах</span></li>
+              <li><span class="check">✓</span><span>Индивидуальные условия по запросу</span></li>
+            </ul>
+            <a class="btn btn-primary" href="#request">Стать партнером</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section winners" id="winners">
+      <div class="container">
+        <div class="title">
+          <div class="eyebrow">Конкурс</div>
+          <h2>Победители конкурса «Сагаан зураг» 2026</h2>
+          <p class="lead">Итоги конкурса и работы победителей.</p>
+        </div>
+        <div class="winners-grid">
+          <article class="winner-card first">
+            <span class="place">🥇 Победители</span>
+            <div class="winner-media"><img src="winner-1.jpg" alt="Работа команды Мхээр — победитель конкурса Сагаан зураг 2026" loading="lazy"></div>
+            <h3>Команда «Мхээр»</h3><p>Закаменский район</p>
+          </article>
+          <article class="winner-card">
+            <span class="place">🥈 Серебряные призеры</span>
+            <div class="winner-media"><img src="winner-2.jpg" alt="Работа команды Горная Ока — серебряный призер конкурса Сагаан зураг 2026" loading="lazy"></div>
+            <h3>«Горная Ока»</h3><p>Окинский район</p>
+          </article>
+          <article class="winner-card">
+            <span class="place">🥉 Бронзовые призеры</span>
+            <div class="winner-media"><img src="winner-3.jpg" alt="Работа команды Весёлые снежинки — бронзовый призер конкурса Сагаан зураг 2026" loading="lazy"></div>
+            <h3>«Весёлые снежинки»</h3><p>Улан-Удэ</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="partners">
+      <div class="container">
+        <div class="title">
+          <div class="eyebrow">Наши партнеры</div>
+          <h2>Партнеры фестиваля</h2>
+          <p class="lead">Логотипы подключены напрямую с оригинальной страницы фестиваля.</p>
+        </div>
+        <div class="partners-grid" aria-label="Логотипы партнеров">
+          <div class="partner-logo"><img loading="lazy" src="https://static.tildacdn.com/tild3561-6563-4166-b566-646130653338/Logo_Buryatia_Rus_Wh.png" alt="Партнер фестиваля"></div>
+          <div class="partner-logo"><img loading="lazy" src="https://static.tildacdn.com/tild3236-3064-4563-b366-326635353864/ver_3_1_Buryatia_rus.png" alt="Партнер фестиваля"></div>
+          <div class="partner-logo"><img loading="lazy" src="https://static.tildacdn.com/tild6166-6237-4531-a664-643831653130/50____.png" alt="Партнер фестиваля"></div>
+          <div class="partner-logo"><img loading="lazy" src="https://static.tildacdn.com/tild3237-3232-4266-a431-663864633965/VTB_Logo_2018.png" alt="Партнер фестиваля"></div>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container split">
         <div>
@@ -499,32 +509,14 @@
 
     <section class="section" id="request">
       <div class="container">
-        <div class="cta">
-          <div>
-            <div class="eyebrow">Заявка</div>
-            <h2>Оставьте заявку на участие, логотип на льду или партнерство</h2>
-            <p class="lead">Напишите, какой формат интересен: участие компании, логотип на льду, партнерство, приезд гостей или проживание. Менеджер уточнит условия, площадку, программу и варианты контента для компании.</p>
-            <p class="small">Телефон: <a href="tel:+79021622151">+7 (902) 162-21-51</a> · Почта: <a href="mailto:sale@kumutkan.ru">sale@kumutkan.ru</a> · Адрес: Республика Бурятия, с. Максимиха, ул. Пушкина, 1</p>
+        <div class="cta cta-simple">
+          <div class="eyebrow">Заявка</div>
+          <h2>Оставьте заявку на участие, логотип на льду или партнерство</h2>
+          <p class="lead">Подходит для компаний, которые хотят нарисовать свой логотип на льду Байкала, стать партнером фестиваля или приехать командой на событие.</p>
+          <p class="small">Телефон: <a href="tel:+79021622151">+7 (902) 162-21-51</a> · Почта: <a href="mailto:sale@kumutkan.ru">sale@kumutkan.ru</a> · Адрес: Республика Бурятия, с. Максимиха, ул. Пушкина, 1</p>
+          <div class="request-button-wrap">
+            <a class="btn btn-primary" href="#popup:tours bf502n">Отправить заявку</a>
           </div>
-          <form class="form" data-lead-form>
-            <div class="form-grid">
-              <input class="field" type="text" name="name" placeholder="Ваше имя" required>
-              <input class="field" type="tel" name="phone" placeholder="Телефон" required>
-              <select class="field" name="format" required>
-                <option value="">Выберите формат</option>
-                <option>Хочу участвовать как гость</option>
-                <option>Мы компания, хотим нарисовать логотип</option>
-                <option>Хочу приехать как зритель</option>
-                <option>Пакет участия для компании</option>
-                <option>Партнерство / спонсорство</option>
-                <option>Проживание на даты фестиваля</option>
-              </select>
-              <textarea class="field" name="message" placeholder="Комментарий: сколько человек, даты, пожелания"></textarea>
-              <label class="consent"><input type="checkbox" required><span>Я согласен(а) на обработку персональных данных и обратную связь по заявке.</span></label>
-              <button class="btn btn-primary" type="submit">Отправить заявку</button>
-              <div class="form-status" data-form-status>Спасибо! Сейчас откроется почтовый клиент для отправки заявки на sale@kumutkan.ru.</div>
-            </div>
-          </form>
         </div>
       </div>
     </section>
@@ -577,24 +569,6 @@
       }, {passive:true});
       showMedia(0);
     }
-    document.querySelector('[data-lead-form]')?.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const form = event.currentTarget;
-      const data = new FormData(form);
-      const subject = 'Заявка с сайта: Снежная открытка 2026';
-      const body = [
-        'Новая заявка со страницы фестиваля «Снежная открытка»',
-        '',
-        `Имя: ${data.get('name') || ''}`,
-        `Телефон: ${data.get('phone') || ''}`,
-        `Формат: ${data.get('format') || ''}`,
-        `Комментарий: ${data.get('message') || ''}`
-      ].join(String.fromCharCode(10));
-      const status = document.querySelector('[data-form-status]');
-      if (status) status.style.display = 'block';
-      window.location.href = `mailto:sale@kumutkan.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      form.reset();
-    });
   </script>
 </body>
 </html>
