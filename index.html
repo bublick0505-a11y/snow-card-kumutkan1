@@ -50,7 +50,7 @@
     h2{margin-bottom:18px;font-size:clamp(32px,4.4vw,56px);line-height:1;letter-spacing:-.055em}
     h3{margin-bottom:10px;font-size:22px;line-height:1.15;letter-spacing:-.035em}
     .lead{color:var(--muted);font-size:clamp(18px,2vw,22px);max-width:780px}
-    .hero{position:relative;overflow:hidden;min-height:760px;padding:88px 0 74px;color:#fff;background:linear-gradient(120deg,rgba(0,77,110,.92),rgba(0,77,110,.50)),url('hero.jpg') center/cover no-repeat}
+    .hero{position:relative;overflow:hidden;min-height:760px;padding:88px 0 74px;color:#fff;background:linear-gradient(120deg,rgba(0,77,110,.82),rgba(0,77,110,.30)),url('hero.jpg') center/cover no-repeat}
     .hero::after{content:"";position:absolute;inset:auto 0 -1px;height:150px;background:linear-gradient(to bottom,transparent,var(--paper));pointer-events:none}
     .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,.95fr) minmax(420px,1.05fr);gap:46px;align-items:center}
     .hero .eyebrow{background:rgba(238,255,0,.92);color:var(--deep)}
@@ -229,7 +229,7 @@
           <h1>Снежная открытка 2026 на Байкале</h1>
           <p class="lead">Фестиваль на льду Байкала, который начался с доброй истории и за пять лет вырос в международное событие с участием команд из Монголии и Китая. Для крупных компаний это возможность создать собственный логотип на льду, получить яркий инфоповод и сильный визуальный контент.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#popup:toursbf502n" data-open-tilda-popup>Подать заявку на участие</a>
+            <a class="btn btn-primary" href="#popup:tours" data-open-tilda-popup>Подать заявку на участие</a>
             <a class="btn btn-secondary" href="#winners">Смотреть победителей</a>
           </div>
           <div class="fact">📍 с. Максимиха, Баргузинский район</div>
@@ -401,7 +401,7 @@
               <li><span class="check">✓</span><span>Организационное сопровождение и инструктаж</span></li>
               <li><span class="check">✓</span><span>Фото, видео и съемка результата с воздуха</span></li>
             </ul>
-            <a class="btn btn-secondary" href="#popup:toursbf502n" data-open-tilda-popup>Оставить заявку от компании</a>
+            <a class="btn btn-secondary" href="#popup:tours" data-open-tilda-popup>Оставить заявку от компании</a>
           </article>
           <article class="price-card">
             <span class="price-label">Для брендов</span>
@@ -414,7 +414,7 @@
               <li><span class="check">✓</span><span>Бренд-интеграция на площадке и в визуальных материалах</span></li>
               <li><span class="check">✓</span><span>Индивидуальные условия по запросу</span></li>
             </ul>
-            <a class="btn btn-primary" href="#popup:toursbf502n" data-open-tilda-popup>Стать партнером</a>
+            <a class="btn btn-primary" href="#popup:tours" data-open-tilda-popup>Стать партнером</a>
           </article>
         </div>
       </div>
@@ -519,7 +519,7 @@
           <p class="lead">Подходит для компаний, которые хотят нарисовать свой логотип на льду Байкала, стать партнером фестиваля или приехать командой на событие.</p>
           <p class="small">Телефон: <a href="tel:+79021622151">+7 (902) 162-21-51</a> · Почта: <a href="mailto:sale@kumutkan.ru">sale@kumutkan.ru</a> · Адрес: Республика Бурятия, с. Максимиха, ул. Пушкина, 1</p>
           <div class="request-button-wrap">
-            <a class="btn btn-primary" href="#popup:toursbf502n" data-open-tilda-popup>Отправить заявку</a>
+            <a class="btn btn-primary" href="#popup:tours" data-open-tilda-popup>Отправить заявку</a>
           </div>
         </div>
       </div>
@@ -577,35 +577,32 @@
 
     // Автовысота iframe и открытие формы Tilda из iframe.
     (function(){
-      const POPUP_TARGETS = ['#popup:toursbf502n', '#popup:tours bf502n', '#popup:tours%20bf502n'];
+      const POPUP_TARGETS = ['#popup:tours'];
 
-      function sendHeight(){
-        const doc = document.documentElement;
-        const body = document.body;
-        const height = Math.max(
-          body ? body.scrollHeight : 0,
-          body ? body.offsetHeight : 0,
-          doc ? doc.clientHeight : 0,
-          doc ? doc.scrollHeight : 0,
-          doc ? doc.offsetHeight : 0
-        );
+      function sendHeight() {
         try {
-          window.parent.postMessage({type:'snow-card-height', height: height + 40}, '*');
-        } catch(e) {}
+          const height = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.offsetHeight
+          );
+          window.parent.postMessage({type:'snow-card-height', height}, '*');
+        } catch (error) {}
       }
 
-      function openTildaPopup(event){
+      function requestTildaPopup(event) {
         if (event) event.preventDefault();
+        const target = POPUP_TARGETS[0];
         try {
-          window.parent.postMessage({type:'open-snow-card-popup', targets: POPUP_TARGETS}, '*');
-        } catch(e) {}
-        try {
-          if (window.top && window.top !== window) window.top.location.hash = POPUP_TARGETS[0].slice(1);
-        } catch(e) {}
+          window.parent.postMessage({type:'open-snow-card-popup', targets: POPUP_TARGETS, target}, '*');
+        } catch (error) {}
+        try { window.location.hash = target.replace('#', ''); } catch (error) {}
       }
 
       document.querySelectorAll('[data-open-tilda-popup]').forEach((link) => {
-        link.addEventListener('click', openTildaPopup);
+        link.setAttribute('href', POPUP_TARGETS[0]);
+        link.addEventListener('click', requestTildaPopup);
       });
 
       window.addEventListener('load', sendHeight);

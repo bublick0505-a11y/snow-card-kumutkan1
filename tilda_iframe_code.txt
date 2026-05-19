@@ -13,21 +13,29 @@
   var iframe = document.getElementById('snow-card-frame');
   if (!iframe) return;
 
-  function clickTildaPopup(targets){
-    var list = targets && targets.length ? targets : ['#popup:toursbf502n', '#popup:tours bf502n', '#popup:tours%20bf502n'];
-    for (var i = 0; i < list.length; i++) {
-      var href = list[i];
-      try {
-        var link = document.createElement('a');
-        link.href = href;
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        window.location.hash = href.replace('#', '');
-        return;
-      } catch(e) {}
-    }
+  function openTildaPopup(targets){
+    var target = '#popup:tours';
+    if (targets && targets.length) target = targets[0] || target;
+
+    try {
+      var link = document.createElement('a');
+      link.href = target;
+      link.style.position = 'absolute';
+      link.style.left = '-9999px';
+      link.textContent = 'open popup';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch(e) {}
+
+    try {
+      window.location.hash = target.replace('#', '');
+      window.dispatchEvent(new HashChangeEvent('hashchange'));
+    } catch(e) {}
+
+    try {
+      document.querySelectorAll('a[href="' + target + '"]').forEach(function(a){ a.click(); });
+    } catch(e) {}
   }
 
   window.addEventListener('message', function(event){
@@ -36,7 +44,7 @@
       iframe.style.height = Math.ceil(Number(data.height)) + 'px';
     }
     if (data.type === 'open-snow-card-popup') {
-      clickTildaPopup(data.targets);
+      openTildaPopup(data.targets);
     }
   });
 })();
